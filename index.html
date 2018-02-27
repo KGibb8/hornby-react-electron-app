@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Infinity And Beyond</title>
+    <link rel="stylesheet" href="app/stylesheets/jquery.flipster.min.css">
+    <link rel="stylesheet" href="app/stylesheets/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="app/stylesheets/material-icons.css">
+    <link rel="stylesheet" href="app/stylesheets/styles.css">
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script>
+      window.$ = window.jQuery = require('./lib/jquery.min.js');
+    </script>
+    <script src="./lib/hammer.min.js" onload="window.Hammer = module.exports;"></script>
+    <script src="./lib/materialize.min.js"></script>
+    <script>
+      require('babel-register');
+      require('./app/app');
+    </script>
+  </body>
+</html>
