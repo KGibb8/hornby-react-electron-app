@@ -1,9 +1,9 @@
 {
-  "name": "horcrux",
+  "name": "hornby-road",
   "version": "0.1.0",
   "main": "main.js",
   "license": "MIT",
-  "repository": "tenthousandthings/horcrux",
+  "repository": "KGibb8/hornby-react-electron-app",
   "scripts": {
     "start": "electron -r babel-register ."
   },
@@ -14,6 +14,7 @@
     "babel-register": "^6.3.13",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-materialize": "^2.0.6",
     "react-router-dom": "^4.2.2",
     "secrets.js": "^0.1.8",
     "uri-js": "^3.0.2"

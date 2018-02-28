@@ -17,7 +17,7 @@ export default class Navbar extends React.Component {
           </ul>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li>
-              <Link to='/basket'>Basket</Link>
+              <a onClick={ this.props.toggleBasket }>Basket</a>
             </li>
           </ul>
         </div>

@@ -1,43 +1,62 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import BasketItem from './BasketItem'
+import axios from 'axios'
+import Item from './Item'
 
 class Basket extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      order: {},
+      items: []
+    }
   }
 
-  items () {
-    return this.props.basket.items.map((item, index) => {
-      return (
-        <li key={ index }>
-          <BasketItem
-            id={ item.id }
-            hashId={ item.hashId }
-            name={ item.name }
-            organic={ item.organic }
-            brand={ item.brand }
-            price={ item.price }
-            label={ item.label }
-          />
-        </li>
-      )
+  getOrder() {
+    axios.get('http://localhost:3000/api/v1/order/current.json').then(response => {
+      this.setState({
+        order: response.data,
+        items: response.data.items
+      })
+    }).catch(error => {
+      console.log(error)
     })
   }
 
+  componentWillMount() {
+    this.getOrder()
+  }
+
   render () {
+    var items = this.state.items.map((item, index) => {
+      return (
+        <Item
+          key={ index }
+          id={ item.id }
+          name={ item.product.name }
+          code={ item.productOption.code }
+          price={ item.productOption.price }
+        />
+      )
+    })
+    var total = () => {
+      var order = this.state.order
+      return (
+        <div className='total'>
+          <span>Total</span>
+          <span className='totalValue'>{ order.incompleteTotal ? order.incompleteTotal : null }</span>
+        </div>
+      )
+    }
     return (
       <div className='basket'>
         <h2>Basket</h2>
         <div className='basketItems'>
           <ul>
-            { this.items() }
+            { items }
           </ul>
         </div>
-        <div className='basketTotal'>
-          <span>Total</span>
-          <span className='total'>{ this.props.basket.incompleteTotal }</span>
-        </div>
+        { total() }
       </div>
     )
   }

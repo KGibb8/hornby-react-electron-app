@@ -1,5 +1,5 @@
 import { app, BrowserWindow } from 'electron'
-import reload from 'electron-reload'
+require('electron-reload')(__dirname);
 import path from 'path'
 import url from 'url'
 

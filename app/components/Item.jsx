@@ -8,16 +8,16 @@ class Item extends React.Component {
 
   render() {
     return (
-      <div className='basketItem'>
+      <li className='item'>
         <p>{ this.props.name }</p>
-        <div className='basketItemDetails'>
-          <span>{ this.props.brand }</span>
-          <span>{ this.props.organic }</span>
+        <div className='itemDetails'>
+          <span>{ this.props.code }</span>
+          <span>{ this.props.price }</span>
           <span>{ this.props.label }</span>
         </div>
-      </div>
+      </li>
     )
   }
 }
 
-export default BasketItem
+export default Item
