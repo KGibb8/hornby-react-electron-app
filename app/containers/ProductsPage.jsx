@@ -1,17 +1,21 @@
 import React from "react"
 import axios from 'axios'
 import Product from '../components/Product'
-import ProductOption from '../components/ProductOption'
-import ProductForm from '../components/ProductForm'
-import Search from '../components/Search'
+import Basket from '../components/Basket'
+
+import Config from '../config.js'
 
 export default class ProductsPage extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = {
       products: [],
-      query: null
+      query: null,
+      basketVisible: false
     }
+
+    this.toggleBasket = this.toggleBasket.bind(this)
   }
 
   getProducts() {
@@ -30,6 +34,13 @@ export default class ProductsPage extends React.Component {
     this.getProducts()
   }
 
+  toggleBasket(event) {
+    event.preventDefault()
+    this.setState({
+      basketVisible: !this.state.basketVisible
+    })
+  }
+
   render () {
     var products = this.state.products.map((product, index) => {
       return (
@@ -40,15 +51,37 @@ export default class ProductsPage extends React.Component {
             name={ product.name }
             organic={ product.organic }
             brand={ product.brand }
+            productOptions={ product.productOptions }
           />
         </div>
       )
     })
-    return (
-      <div className='products'>
-        <div className='row'>
-          { products }
+    if (this.state.basketVisible) {
+      var content = <div className="row">
+        <div className="col s9 m9 l9">
+          <div className="row">
+            { products }
+          </div>
         </div>
+        <div className="col s3 m3 l3">
+          <Basket />
+        </div>
+      </div>
+    } else {
+      var content = <div className="row">
+        <div className="col s12 m12 l12">
+          <div className="row">
+            { products }
+          </div>
+        </div>
+      </div>
+    }
+    return (
+      <div>
+        <div className="row">
+          <i className="material-icons" onClick={ this.toggleBasket }>shopping_basket</i>
+        </div>
+        { content }
       </div>
     )
   }

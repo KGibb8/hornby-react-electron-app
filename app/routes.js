@@ -11,7 +11,6 @@ export default class Routes extends React.Component {
       <Switch>
         <Route exact path="/" component={ HomePage } />
         <Route path="/products" component={ ProductsPage } />
-        <Route path="/basket" component={ BasketPage } />
       </Switch>
     )
   }

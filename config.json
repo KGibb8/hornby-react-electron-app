@@ -1,6 +1,6 @@
 {
-  "infinity-api": {
-    "uri": "http://localhost",
+  "infinityApi": {
+    "baseUri": "http://localhost",
     "port": 3000
   }
 }

@@ -1,4 +1,3 @@
-'use babel'
 import React from 'react'
 import Routes from '../routes'
 import Navbar from  '../components/Navbar'
@@ -10,21 +9,12 @@ export default class App extends React.Component {
     this.state = {
       basketVisible: false
     }
-    this.toggleBasket = this.toggleBasket.bind(this)
-  }
-
-  toggleBasket(event) {
-    event.preventDefault()
-    this.setState({
-      basketVisible: !this.state.basketVisible
-    })
   }
 
   render() {
     return (
       <div id="root">
-        <Navbar toggleBasket={ this.toggleBasket }/>
-        { this.state.basketVisible ? <Basket /> : null }
+        <Navbar />
         <Routes />
       </div>
     )
